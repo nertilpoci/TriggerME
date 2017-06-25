@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="TriggerMeClient.Wpf.Views.TriggersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TriggerMeClient.Wpf.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="UserControl_Loaded"
+             mc:Ignorable="d" DataContext="{Binding Triggers, Source={StaticResource Locator}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+       
+        <Button Width="60" Height="60" Command="{Binding ShowAddEditCommand}" IsDefault="True" Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                 Margin="0,0,32,62" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="Plus" Height="44" Width="44" />
+        </Button>
+        <materialDesign:TransitioningContent DockPanel.Dock="Top">
+            <materialDesign:TransitioningContent.OpeningEffects>
+                <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:1" />
+            </materialDesign:TransitioningContent.OpeningEffects>
+            <DataGrid CanUserAddRows="False"  CanUserDeleteRows="False"
+   ColumnWidth="*" ItemsSource="{Binding TriggerMessages}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Action" Binding="{Binding Path=Action}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="40">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Triggers.SetActionCommand, Source={StaticResource Locator}}" CommandParameter="{Binding Path=Id}"  Height="20" Style="{DynamicResource MaterialDesignFlatButton }" Padding="0" 
+                                   >
+                                    <materialDesign:PackIcon  Kind="Folder" ></materialDesign:PackIcon>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </materialDesign:TransitioningContent>
+        <Button Style="{DynamicResource MaterialDesignFloatingActionButton}"
+              
+                Command="{Binding RefreshCommand}"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                
+                Margin="5 5 5 5">
+            <materialDesign:PackIcon Width="40" Height="40" Kind="Reload" />
+        </Button>
+    </Grid>
+</UserControl>

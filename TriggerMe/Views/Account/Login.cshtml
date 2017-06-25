@@ -1,0 +1,70 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model WebApplicationBasic.Models.AccountViewModels.LoginViewModel
+@inject Microsoft.AspNetCore.Identity.SignInManager<TriggerMe.Model.ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class=" vertical-center">
+    <div class="container">
+        <div class="omb_login">
+            <h3 class="omb_authTitle text-center">Login or <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Sign up</a></h3>
+
+            @Html.Partial("_ExternalProviders")
+            <div class="row  omb_loginOr">
+                <div class="col-sm-12 col-md-offset-3 col-md-6">
+                    <hr class="omb_hrOr">
+                    <span class="omb_spanOr">or</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-sm-offset-0 col-md-offset-3">
+                    <form class="omb_loginForm" asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                        <div   class="help-block" asp-validation-summary="ModelOnly"></div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input required type="text" asp-for="Email" class="form-control" name="email" placeholder="email address">
+                        </div>
+                        <span class="help-block" asp-validation-for="Email"></span>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input required type="password" asp-for="Password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <span class="help-block" asp-validation-for="Password"></span>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        @if (ViewData["EmailNotConfirmed"] != null && (bool)ViewData["EmailNotConfirmed"] == true)
+            {
+                            <span class="help-block text-danger" asp-validation-for="Email">
+                                Email not confirmed    <a asp-action="ResendEmail" asp-controller="account">Confirm email </a>
+                            </span>
+                        }
+                    </form>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-xs-6 col-md-3 col-md-offset-3 col-sm-offset-0">
+                    <label style="margin-left:20px" class="checkbox">
+                        <input type="checkbox" asp-for="RememberMe">Remember Me
+                    </label>
+                </div>
+                <div class="col col-xs-6 col-md-3">
+
+                    <a class="pull-right" style="margin-top:10px" asp-action="ForgotPassword">Forgot password?</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+  
+
+</div>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

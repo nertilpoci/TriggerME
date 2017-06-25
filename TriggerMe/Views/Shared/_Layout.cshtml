@@ -1,0 +1,140 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - TriggerME</title>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <style>
+                html, body {
+                       height: 100%;
+                   }
+
+                   .vertical-center {
+                       min-height: 100%; /* Fallback for vh unit */
+                       min-height: 100vh; /* You might also want to use
+                               'height' property instead.
+
+                               Note that for percentage values of
+                               'height' or 'min-height' properties,
+                               the 'height' of the parent element
+                               should be specified explicitly.
+
+                               In this case the parent of '.vertical-center'
+                               is the <body> element */
+                       /* Make it a flex container */
+                       display: -webkit-box;
+                       display: -moz-box;
+                       display: -ms-flexbox;
+                       display: -webkit-flex;
+                       display: flex;
+                       /* Align the bootstrap's container vertically */
+                       -webkit-box-align: center;
+                       -webkit-align-items: center;
+                       -moz-box-align: center;
+                       -ms-flex-align: center;
+                       align-items: center;
+                       /* In legacy web browsers such as Firefox 9
+            we need to specify the width of the flex container */
+                       width: 100%;
+                       /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+            hence the bootstrap's container won't be aligned to the center anymore.
+
+            Therefore, we should use the following declarations to get it centered again */
+                       -webkit-box-pack: center;
+                       -moz-box-pack: center;
+                       -ms-flex-pack: center;
+                       -webkit-justify-content: center;
+                       justify-content: center;
+                   }
+
+            .omb_login .omb_socialButtons a {
+                color: white;
+                opacity: 0.9;
+            }
+
+                .omb_login .omb_socialButtons a:hover {
+                    color: white;
+                    opacity: 1;
+                }
+
+            .omb_login .omb_socialButtons .omb_btn-facebook {
+                background: #3b5998;
+            }
+
+            .omb_login .omb_socialButtons .omb_btn-twitter {
+                background: #00aced;
+            }
+
+            .omb_login .omb_socialButtons .omb_btn-linkedin {
+                background: #0077b5;
+            }
+
+            .omb_login .omb_socialButtons .omb_btn-microsoft {
+                background: #cdcdcd;
+            }
+
+            .omb_login .omb_socialButtons .omb_btn-google {
+                background: #c32f10;
+            }
+
+
+            .omb_login .omb_loginOr {
+                position: relative;
+                font-size: 1.5em;
+                color: #aaa;
+                margin-top: 1em;
+                margin-bottom: 1em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+            }
+
+                .omb_login .omb_loginOr .omb_hrOr {
+                    background-color: #cdcdcd;
+                    height: 1px;
+                    margin-top: 0px !important;
+                    margin-bottom: 0px !important;
+                }
+
+                .omb_login .omb_loginOr .omb_spanOr {
+                    display: block;
+                    position: absolute;
+                    left: 50%;
+                    top: -0.6em;
+                    margin-left: -1.5em;
+                    background-color: white;
+                    width: 3em;
+                    text-align: center;
+                }
+
+            .omb_login .omb_loginForm .input-group.i {
+                width: 2em;
+            }
+
+            .omb_login .omb_loginForm .help-block {
+                color: red;
+            }
+
+
+            @@media (min-width: 768px) {
+               .omb_forgotPwd {
+                   
+                    margin-top: 10px;
+                }
+            }
+        </style>
+
+    </head>
+    <body>
+    
+        @RenderBody()
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+
+        <a [routerLink]="['clients']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-users"></i>&nbsp;{{ 'Clients' }}
+        </a>
+        <a [routerLink]="['triggers']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-telegram"></i>&nbsp;{{ 'Triggers' }}
+        </a>
+        <a [routerLink]="['/welcome']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-home"></i>&nbsp;{{ 'Home' }}
+        </a>
+
+
+
+    </ul>
+</nav>

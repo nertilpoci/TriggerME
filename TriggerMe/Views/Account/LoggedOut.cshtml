@@ -1,0 +1,45 @@
+﻿@model WebApplicationBasic.Models.AccountViewModels.LoggedOutViewModel
+@{
+    // set this so UI rendering sees an anonymous user
+    Context.User = new System.Security.Claims.ClaimsPrincipal(new System.Security.Claims.ClaimsIdentity());
+}
+
+
+
+
+<div class="jumbotron vertical-center">
+
+    <div class="container text-center">
+  
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="page-header logged-out">
+
+                        <small>You are now logged out </small>
+
+                    @if (Model.PostLogoutRedirectUri != null)
+                    {
+                        <div>
+                            Click <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">here</a> to return to the
+                            <span>@Model.ClientName</span> application.
+                        </div>
+                    }
+                    @if (Model.SignOutIframeUrl != null)
+                    {
+                        <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+            @section scripts
+{
+                @if (Model.AutomaticRedirectAfterSignOut)
+                {
+                    <script src="~/js/signout-redirect.js"></script>
+                }
+            }

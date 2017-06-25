@@ -1,0 +1,55 @@
+<p-dialog header="Client Details" [(visible)]="displayDialog" [responsive]="true" [modal]="true" showEffect="fade" [appendTo]="body">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="client">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="name">Name</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="client.name" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="description">Description</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="description" [(ngModel)]="client.description" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<h1 class="text-center text-muted">Clients</h1>
+<hr/>
+<br/>
+<p-dataTable class="statuscolumn" [rows]="10" [paginator]="true" [pageLinks]="1" [responsive]="true" [stacked]="stacked" (onEditComplete)="onEditComplete($event)"
+    (onEditInit)="onEditInit($event)" [(value)]="clients" [editable]="true">
+    <p-column field="name" header="Name" [editable]="true"></p-column>
+    <p-column field="description" header="Description" [editable]="true"></p-column>
+    <p-column styleClass="statuscolumn" field="isOnline" header="Status">
+        <ng-template   let-col let-data="rowData" let-i="rowIndex" pTemplate="body" type="body">
+            <span [ngClass]="{'alert':true,  'alert-danger':!data.isOnline, 'alert-success':data.isOnline}">{{data.isOnline? 'Online' : 'Offline'}}</span>
+        </ng-template>
+    </p-column>
+    <p-column styleClass="triggercolumn" field="id" header="Triggers">
+        <ng-template let-col let-data="rowData" pTemplate="body" type="body">
+            <a class="ui-button-info btn-link text-primary" [routerLink]="['../triggers/' , data[col.field] ]">View Triggers</a>
+        </ng-template>
+    </p-column>
+    <p-column styleClass="actioncolumn">
+        <ng-template let-col let-data="rowData" pTemplate="body" type="body">
+            <button pButton icon="fa-trash-o" class="ui-button-danger" (click)="confirmDelete('Are you sure you want to perform this action',data)"></button>
+        </ng-template>
+    </p-column>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+            <button type="button" pButton icon="fa-plus" style="float:right" (click)="showDialogToAdd()" label="Add New Client"></button>
+        </div>
+    </p-footer>
+</p-dataTable>
+
+
+
+
+
+
+
+<p-confirmDialog width="425"></p-confirmDialog>

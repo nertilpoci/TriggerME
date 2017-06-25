@@ -1,0 +1,195 @@
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="container">
+        <a class="navbar-brand" href="#">TriggerME</a>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a scrollTo href="#how" class="nav-link">How-to</a>
+                </li>
+                <li class="nav-item">
+                    <a scrollTo href="#download" class="nav-link">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a scrollTo href="#contribute" class="nav-link">Contribute</a>
+                </li>
+                <li *ngIf="!isLoggedIn" class="nav-item">
+                    <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" class="nav-link">Login</a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item">
+                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['router-link-active']" class="nav-link">Dashboard</a>
+                </li>
+                <li *ngIf="isLoggedIn" class="nav-item">
+                    <a (click)="logout()" class="nav-link">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div id="particles-js"></div>
+            <div class="col-md-6">
+                <div class="intro-message">
+                    <div class="card card-backgroud">
+                        <div class="card-block">
+                            <h2 class="card-title text-primary">Remote trigger</h2>
+                            <h4 class="text-muted">Trigger actions on your pc from anywhere</h4>
+                            <hr class="intro-divider">
+                            <table border=0 class="rectangle-list">
+                                <tr>
+                                    <td>
+                                        <ol>
+                                            <li>
+                                                <p>Create an account</p>
+                                            </li>
+                                            <li>
+                                                <p>Download the desktop client and sign in</p>
+                                            </li>
+                                            <li>
+                                                <p>Create a client</p>
+                                            </li>
+                                            <li>
+                                                <p>Add some triggers to client</p>
+                                            </li>
+                                            <li>
+                                                <p>Connect desktop app to create client</p>
+                                            </li>
+                                            <li>
+                                                <p>Set trigger actions on the desktop app</p>
+                                            </li>
+                                            <li>
+                                                <p>Click execute trigger to test trigger</p>
+                                            </li>
+                                            <li>
+                                                <p>Get trigger url and set it up to be called on events(eg: IFTTT)</p>
+                                            </li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="intro-message">
+                    <div class="card card-backgroud">
+                        <div class="card-block">
+                            <img src="/assets/img/how.gif" class="img-fluid" style="max-width: 100%; " alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Page Content -->
+<section class="content-section-a" id="how">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading text-primary">Check out this tutorial on how to setup</h2>
+                <p class="lead">Step by step tutorial how to get started with the app.</p>
+            </div>
+            <div class="col-lg-5 offset-lg-2 embed-responsive embed-responsive-16by9">
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/3cYBfuphkuE">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</section>
+
+<section class="content-section-b" id="download">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-5 push-lg-7">
+                <h2 class="section-heading text-primary">Download <span>Desktop Client</span></h2>
+                <div class="clearfix"></div>
+                <p class="lead text-center"> <a target="_blank" [href]="desktopUrl"><i style="font-size:100px" class="fa fa-download" aria-hidden="true"></i></a>                    </p>
+            </div>
+            <div class="col-lg-5 pull-lg-5">
+                <ngb-carousel>
+                    <ng-template ngbSlide>
+                        <img src="https://s7.postimg.org/egg04h0wb/image.png">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <img src="https://s7.postimg.org/cd5kwt13f/image.png" alt="Random second slide">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <img src="https://s7.postimg.org/qnjqm16tn/image.png">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <img src="https://s7.postimg.org/i40co9yh7/image.png">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <img src="https://s7.postimg.org/cr6wwel6z/image.png">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</section>
+<!-- /.content-section-b -->
+
+<section class="content-section-a" id="contribute">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="text-center col">
+                <a [href]="githubUrl" target="_blank" class="btn btn-primary btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</section>
+<!-- /.content-section-a -->
+
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p class="copyright text-muted small">Copyright &copy; TriggerME 2017. All Rights Reserved</p>
+    </div>
+</footer>

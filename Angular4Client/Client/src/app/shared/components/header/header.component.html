@@ -1,0 +1,24 @@
+<div class="pos-f-t fixed-top header">
+    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+        <button class="navbar-toggler navbar-toggler-right" (click)="toggleSidebar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">TriggerMe- Dashboard</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            < <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                <li class="nav-item">
+                    <a [href]="desktopUrl" target="_blank" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;"><i class="fa fa-download" aria-hidden="true"></i> Desktop</a>
+                </li> &nbsp;
+                <li class="nav-item dropdown" ngbDropdown>
+                    <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                        <i class="fa fa-user"></i> {{username}} <b class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <a class="dropdown-item" (click)="logout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </div>
+                </li>
+                </ul>
+        </div>
+    </nav>
+</div>

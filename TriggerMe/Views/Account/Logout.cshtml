@@ -1,0 +1,24 @@
+﻿@model WebApplicationBasic.Models.AccountViewModels.LogoutViewModel
+
+<div class="jumbotron vertical-center">
+
+    <div class="container text-center">
+        <h1>Logout</h1>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <p>Are you sure you want to logout.</p>
+                <form asp-action="Logout">
+                    <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+                    <fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-primary">Yes</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

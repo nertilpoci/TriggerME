@@ -1,0 +1,72 @@
+<p-dialog header="Trigger Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="triggerMessage">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="name">Name</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="triggerMessage.name" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="description">Description</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="description" [(ngModel)]="triggerMessage.description" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="cancel()" label="Cancel"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+<br />
+<div class="row">
+    <div class="form-inline  offset-md-0 colmd-12 offset-3 col-6">
+        <div class="form-group" *ngIf="(clients?.length>0)">
+            <label class="text-primary" style="font-size:20px; margin-right:10px" for="clientSelect">Choose a client   </label>
+            <select [(ngModel)]="currentClient" (ngModelChange)="onClientChange($event)" class="form-control" id="clientSelect">
+         <option *ngFor="let client of clients; let i=index" [ngStyle]="{'color': client.isOnline? 'green' : ''}"
+         [ngValue]="client">
+         {{client.name}}
+         </option>
+         </select>
+            <div *ngIf="(currentClient)">
+                <span *ngIf="(currentClient.isOnline)" class="form-control  alert-success">Online</span>
+                <span *ngIf="(!currentClient.isOnline)" class="form-control   alert-danger">Offline</span>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="(clients?.length==0)">
+            <span>There aren't any clients yet. </span>
+            <a class="ui-button-info" [routerLink]="['/clients' ]">Go to clients</a>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col">
+        <h1 class="text-center text-muted">Triggers</h1>
+        <hr/>
+        <p-dataTable *ngIf="(clients?.length>0)" [rows]="10" [paginator]="true" [pageLinks]="1" [responsive]="true" (onEditComplete)="onEditComplete($event)" (onEditInit)="onEditInit($event)" [value]="triggerMessages" [editable]="true">
+            <p-column field="name" header="Name" [editable]="true"></p-column>
+            <p-column field="description" header="Description" [editable]="true"></p-column>
+            <p-column [style]="{'width':'120px'}">
+                <ng-template let-col let-data="rowData" pTemplate type="body">
+                    <button pButton type="button" label="View Url" class="ui-button-text" (click)="viewTriggerUrl(data)"></button>
+                </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'100px'}">
+                <ng-template let-col let-data="rowData" pTemplate type="body">
+                    <button pButton type="button" label="Execute" class="ui-button-success" (click)="trigger(data)"></button>
+                </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'40px'}">
+                <ng-template let-col let-data="rowData" pTemplate type="body">
+                    <button pButton icon="fa-trash-o" class="ui-button-danger" (click)="confirmDelete('Are you sure you want to perform this action',data)"></button>
+                </ng-template>
+            </p-column>
+            <p-footer>
+                <div class="ui-helper-clearfix" style="width:100%">
+                    <button type="button" pButton icon="fa-plus" style="float:right" (click)="showDialogToAdd()" label="Add New Trigger"></button>
+                </div>
+            </p-footer>
+        </p-dataTable>
+    </div>
+</div>
+<p-confirmDialog width="425"></p-confirmDialog>

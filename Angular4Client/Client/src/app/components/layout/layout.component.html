@@ -1,0 +1,7 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<section class="main-container">
+    <p-growl   life="1000" [(value)]="msgs"></p-growl>
+      <div  [ngBusy]="{busy: busy, message: message}"></div>
+    <router-outlet></router-outlet>
+</section>

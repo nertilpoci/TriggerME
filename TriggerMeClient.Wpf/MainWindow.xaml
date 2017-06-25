@@ -1,0 +1,107 @@
+﻿<Controls:MetroWindow  x:Class="TriggerMeClient.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TriggerMeClient.Wpf"
+        mc:Ignorable="d"
+                        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                       xmlns:views="clr-namespace:TriggerMeClient.Wpf.Views"
+                       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+                     
+
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+                        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="TriggerME" Height="600" WindowStartupLocation="CenterScreen" Width="700">
+    <Controls:MetroWindow.Resources>
+        <local:InverseBoolToVisibility x:Key="InverseBoolToVisibility"/>
+        <local:BoolToVisibility x:Key="BoolToVisibility"/>
+    </Controls:MetroWindow.Resources>
+
+    
+
+
+
+    <Grid>
+    <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="212">
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" 
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right" Margin="16"
+                                    IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                             ItemsSource="{Binding NavItems}" SelectedItem="{Binding CurrentMenu}"
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="domain:DemoItem">
+                                    <StackPanel Orientation="Horizontal" Margin="32 0 32 0">
+                                        <materialDesign:PackIcon Width="25" Height="25" Margin="0 0 10 0" Kind="{Binding Icon}"></materialDesign:PackIcon>
+                                        <TextBlock FontSize="20" Text="{Binding Name}"  />
+                                    </StackPanel>
+                               
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel>
+
+                    <materialDesign:TransitioningContent DockPanel.Dock="Top">
+                        <materialDesign:TransitioningContent.OpeningEffects>
+                            <materialDesign:TransitionEffect Kind="SlideInFromLeft" Duration="0:0:2" />
+                            <materialDesign:TransitionEffect Kind="FadeIn" Duration="0:0:2" />
+                        </materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:ColorZone Padding="16" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                  Background="{Binding Color}"          Mode="Dark"  >
+                            <DockPanel>
+                                <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
+                                        x:Name="MenuToggleButton"/>
+                                <Grid>
+                                    <TextBlock HorizontalAlignment="Right" Visibility="{Binding InternetAvailable, Converter={StaticResource InverseBoolToVisibility}}" >No internet connection</TextBlock>
+
+                                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsLoggedIn, Converter={StaticResource InverseBoolToVisibility}}">User Is Not Logged In.....</TextBlock>
+
+
+
+                                    <Grid Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisibility}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="{Binding Username}">
+                                        </TextBlock>
+                                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Text="{Binding ConectionState}" ></TextBlock>
+
+                                    </Grid>
+                                </Grid>
+                            </DockPanel>
+                        </materialDesign:ColorZone>
+                    </materialDesign:TransitioningContent>
+                  
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                  
+                            <ContentControl Grid.Row="1" Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                   
+
+                        <materialDesign:Snackbar MessageQueue="{Binding MesageQueue}" x:Name="MainSnackbar"
+                                            Grid.Row="1" />
+                </Grid>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
+  
+    </Grid>
+</Controls:MetroWindow>

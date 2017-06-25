@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TriggerMeClient.Wpf.Views.ActionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TriggerMeClient.Wpf.Views"
+                          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Loaded="UserControl_Loaded"
+
+             mc:Ignorable="d" DataContext="{Binding Actions, Source={StaticResource Locator}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <ListView Grid.Row="4" Grid.ColumnSpan="2" ItemsSource="{Binding TriggerMessages}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Description}" Header="Description" />
+                    <GridViewColumn Header="Databases" Width="498">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{x:Null}" Content="{Binding DbName}"
+                                  Width="{Binding CheckWidth}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Width="60" Height="60" Command="{Binding NewEditCommand}" IsDefault="True" Style="{DynamicResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                 Margin="0,0,32,62" Grid.ColumnSpan="2">
+            <materialDesign:PackIcon Kind="Plus" Height="44" Width="44" />
+        </Button>
+    </Grid>
+</UserControl>
