@@ -12,10 +12,13 @@ Example: Trigger computer shutdown when an event happens and you call the specif
 6. Get the trigger url from the web client and call it from you preferred location
 
 ## Technologies
-Aspnet Core
-Aspnet Identity Server4
-Angular4
-SignalR
-Wpf
+- Aspnet Core
+- Aspnet Identity Server4
+- EntityFrameworkCore
+- MSSQL
+- Angular4
+- SignalR
+- Wpf
+
 
 
